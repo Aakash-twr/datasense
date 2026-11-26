@@ -1,0 +1,101 @@
+@import './tokens.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply antialiased;
+    color: var(--ds-text-primary);
+    background-color: var(--ds-bg-app);
+  }
+
+  body {
+    background-color: var(--ds-bg-app);
+    color: var(--ds-text-primary);
+    font-family: var(--ds-font-sans);
+    @apply text-sm leading-relaxed;
+  }
+
+  *,
+  *::before,
+  *::after {
+    @apply box-border;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    background-color: var(--ds-accent-primary);
+    color: var(--ds-text-inverse);
+    border-radius: var(--ds-radius-md);
+    box-shadow: var(--ds-shadow-xs);
+    @apply inline-flex items-center justify-center gap-2 px-3.5 py-2 text-sm font-medium transition-colors hover:bg-ds-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ds-primary disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-secondary {
+    background-color: var(--ds-surface-primary);
+    color: var(--ds-text-primary);
+    border: 1px solid var(--ds-border-default);
+    border-radius: var(--ds-radius-md);
+    box-shadow: var(--ds-shadow-xs);
+    @apply inline-flex items-center justify-center gap-2 px-3.5 py-2 text-sm font-medium transition-colors hover:bg-ds-surface2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ds-primary disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .card {
+    background-color: var(--ds-surface-primary);
+    border: 1px solid var(--ds-border-default);
+    border-radius: var(--ds-radius-lg);
+    box-shadow: var(--ds-shadow-xs);
+    @apply p-6;
+  }
+
+  .ds-page-title {
+    color: var(--ds-text-primary);
+    @apply text-xl font-semibold tracking-tight;
+  }
+
+  .ds-section-heading {
+    color: var(--ds-text-secondary);
+    @apply text-xs font-semibold uppercase tracking-wider;
+  }
+
+  .sidebar-link {
+    color: var(--ds-text-secondary);
+    border-radius: var(--ds-radius-md);
+    @apply flex items-center gap-2.5 px-2.5 py-2 text-[13px] font-medium transition-colors hover:bg-ds-muted hover:text-ds-ink;
+  }
+
+  .sidebar-link-active {
+    background-color: var(--ds-accent-primary-soft);
+    color: var(--ds-accent-primary);
+    @apply font-semibold hover:bg-ds-primary-soft hover:text-ds-primary;
+  }
+}
+
+/* Accessibility: respect user reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Print optimization for shared executive BI reports */
+@media print {
+  aside,
+  header,
+  .print\:hidden {
+    display: none !important;
+  }
+
+  main {
+    overflow: visible !important;
+    padding: 0 !important;
+  }
+}
